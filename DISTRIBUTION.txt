@@ -1,0 +1,14 @@
+SHARE ONLY THE Release FOLDER
+=============================
+The source project is for Exbadr's development/build machine.
+After BUILD_RELEASE.bat succeeds, distribute only:
+
+Release\
+  WireScope.exe
+  WireScope.Core.dll
+  WireScope.Network.dll
+  WireScope.Filters.dll
+  WireScope.Geo.dll
+
+Npcap is loaded from the user's existing Windows installation.
+There is no .NET runtime, no .NET DLL, no runtimeconfig.json and no deps.json.

@@ -1,0 +1,34 @@
+WireScope - GitHub Actions Build
+================================
+
+This project can be built entirely on GitHub's Windows runner.
+You do NOT need Visual Studio, MSVC, MinGW, or .NET on your PC to build it.
+
+HOW TO BUILD
+------------
+1. Create a new GitHub repository.
+2. Upload ALL contents of this folder to the repository root.
+   Important: WireScopeNative.sln and the .github folder must both be at the repository root.
+3. Open the repository on GitHub.
+4. Click the "Actions" tab.
+5. Open "Build WireScope Native".
+6. Click "Run workflow" -> "Run workflow".
+7. Wait for the Windows x64 Release job to finish with a green check.
+8. Open the completed run.
+9. Under "Artifacts", download "WireScope-Release".
+
+THE ARTIFACT CONTAINS
+---------------------
+WireScope.exe
+WireScope.Core.dll
+WireScope.Network.dll
+WireScope.Filters.dll
+WireScope.Geo.dll
+
+NOTES
+-----
+- This is native C++ x64, not .NET.
+- The projects use the static MSVC runtime (/MT), so the final package does not need the VC++ runtime DLLs bundled beside it.
+- Release builds use optimization and do not publish PDB/debug files in the artifact.
+- Native compilation makes the code substantially harder to recover as readable source than managed .NET IL, but no executable can be made impossible to reverse engineer.
+- WireScope still expects Npcap to be installed on the PC where packet capture is used.

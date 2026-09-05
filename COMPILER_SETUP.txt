@@ -1,0 +1,18 @@
+WireScope Native build requirement
+==================================
+
+The compiler is needed ONLY on the developer PC that builds WireScope.
+The final Release does not need Visual Studio and does not use .NET.
+
+Install one of:
+- Visual Studio 2022 Community, OR
+- Build Tools for Visual Studio 2022 (smaller download)
+
+In Visual Studio Installer select:
+  Desktop development with C++
+
+Required components:
+  MSVC v143 - VS 2022 C++ x64/x86 build tools
+  Windows 10 SDK or Windows 11 SDK
+
+After installation, run BUILD_RELEASE.bat again.
