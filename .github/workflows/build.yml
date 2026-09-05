@@ -1,0 +1,66 @@
+name: Build WireScope Native
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build WireScope
+        shell: pwsh
+        run: |
+          msbuild .\WireScopeNative.sln /m /t:Rebuild /p:Configuration=Release /p:Platform=x64 /p:DebugSymbols=false /p:DebugType=None
+
+      - name: Prepare Release
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          $src = Join-Path $PWD "bin\Release"
+          $dst = Join-Path $PWD "Release"
+
+          if (Test-Path $dst) {
+            Remove-Item $dst -Recurse -Force
+          }
+
+          New-Item -ItemType Directory -Path $dst | Out-Null
+
+          $files = @(
+            "WireScope.exe",
+            "WireScope.Core.dll",
+            "WireScope.Network.dll",
+            "WireScope.Filters.dll",
+            "WireScope.Geo.dll"
+          )
+
+          foreach ($file in $files) {
+            $path = Join-Path $src $file
+
+            if (!(Test-Path $path)) {
+              throw "Missing file: $path"
+            }
+
+            Copy-Item $path $dst
+          }
+
+      - name: Upload Release
+        uses: actions/upload-artifact@v4
+        with:
+          name: WireScope-Release
+          path: Release/*
+          if-no-files-found: error
+          compression-level: 9
