@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64"><Configuration>Debug</Configuration><Platform>x64</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64"><Configuration>Release</Configuration><Platform>x64</Platform></ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals"><VCProjectVersion>17.0</VCProjectVersion><ProjectGuid>{D7A25761-E6E8-4075-BEA5-F1953AE05105}</ProjectGuid><RootNamespace>WireScope</RootNamespace><Keyword>Win32Proj</Keyword></PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration"><ConfigurationType>Application</ConfigurationType><UseDebugLibraries>true</UseDebugLibraries><PlatformToolset>v143</PlatformToolset><CharacterSet>Unicode</CharacterSet></PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration"><ConfigurationType>Application</ConfigurationType><UseDebugLibraries>false</UseDebugLibraries><PlatformToolset>v143</PlatformToolset><WholeProgramOptimization>true</WholeProgramOptimization><CharacterSet>Unicode</CharacterSet></PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"><OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir><IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\</IntDir><TargetName>WireScope</TargetName></PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'"><OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir><IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\</IntDir><TargetName>WireScope</TargetName></PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile><WarningLevel>Level4</WarningLevel><SDLCheck>true</SDLCheck><PreprocessorDefinitions>_DEBUG;_WINDOWS;UNICODE;_UNICODE;_WIN32_WINNT=0x0A00;WINVER=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions><ConformanceMode>true</ConformanceMode><LanguageStandard>stdcpp20</LanguageStandard><RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary><AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories></ClCompile>
+    <Link><SubSystem>Windows</SubSystem><GenerateDebugInformation>true</GenerateDebugInformation><AdditionalDependencies>WireScope.Core.lib;WireScope.Network.lib;WireScope.Filters.lib;WireScope.Geo.lib;%(AdditionalDependencies)</AdditionalDependencies><AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories></Link>
+    <Manifest><AdditionalManifestFiles>app.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles></Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile><WarningLevel>Level4</WarningLevel><Optimization>MaxSpeed</Optimization><FunctionLevelLinking>true</FunctionLevelLinking><IntrinsicFunctions>true</IntrinsicFunctions><SDLCheck>true</SDLCheck><PreprocessorDefinitions>NDEBUG;_WINDOWS;UNICODE;_UNICODE;_WIN32_WINNT=0x0A00;WINVER=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions><ConformanceMode>true</ConformanceMode><LanguageStandard>stdcpp20</LanguageStandard><RuntimeLibrary>MultiThreaded</RuntimeLibrary><AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories></ClCompile>
+    <Link><SubSystem>Windows</SubSystem><GenerateDebugInformation>false</GenerateDebugInformation><AdditionalDependencies>WireScope.Core.lib;WireScope.Network.lib;WireScope.Filters.lib;WireScope.Geo.lib;%(AdditionalDependencies)</AdditionalDependencies><EnableCOMDATFolding>true</EnableCOMDATFolding><OptimizeReferences>true</OptimizeReferences><DataExecutionPrevention>true</DataExecutionPrevention><RandomizedBaseAddress>true</RandomizedBaseAddress><AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories></Link>
+    <Manifest><AdditionalManifestFiles>app.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles></Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup><ClCompile Include="main.cpp" /></ItemGroup>
+  <ItemGroup><ClInclude Include="resource.h" /></ItemGroup>
+  <ItemGroup><ResourceCompile Include="WireScope.rc" /></ItemGroup>
+  <ItemGroup><None Include="app.manifest" /><None Include="app.ico" /></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WireScope.Core\WireScope.Core.vcxproj"><Project>{0B0CF943-2E11-4B47-A6A0-8B218FD9C101}</Project><LinkLibraryDependencies>true</LinkLibraryDependencies></ProjectReference>
+    <ProjectReference Include="..\WireScope.Network\WireScope.Network.vcxproj"><Project>{38B34AF9-2F6D-487A-AAC9-DF29B82AA102}</Project><LinkLibraryDependencies>true</LinkLibraryDependencies></ProjectReference>
+    <ProjectReference Include="..\WireScope.Filters\WireScope.Filters.vcxproj"><Project>{74DF1558-A2A1-4E4C-8A46-055D66BFA103}</Project><LinkLibraryDependencies>true</LinkLibraryDependencies></ProjectReference>
+    <ProjectReference Include="..\WireScope.Geo\WireScope.Geo.vcxproj"><Project>{A8880C46-0BB6-46FA-94DD-B0A76FBF5104}</Project><LinkLibraryDependencies>true</LinkLibraryDependencies></ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
